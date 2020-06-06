@@ -4,6 +4,8 @@ The plan is to build from scratch an EPaper Display library with font support. P
 This repository will act for now as a placeholder, to plan the architecture, discuss ideas and document the progress.
 
 Please note that this component development is being done first in [cale-idf repository](https://github.com/martinberlin/cale-idf) and this CalEPD will be a component in cale-idf. Like this is possible to test and develop fast without updating this submodule all the time. 
+
+In CALE-IDF you will find also a daily updated [Wiki with last news and a comprehensive list of Epaper displays supported](https://github.com/martinberlin/cale-idf/wiki).
 Just follow the **cale-idf** or this one to be notified about the development status.
 
 
