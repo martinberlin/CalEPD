@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "esp_system.h"
+#include <stdint.h>
+#include <math.h>
+#include "sdkconfig.h"
+#include "esp_log.h"
+#include <string>
+#include <epd.h>
+#include <Adafruit_GFX.h>
+#include <epdspi.h>
+// Controller: IL91874  Note: This is the display that the T5S from TTGO use
+#define GDEW027W3_WIDTH 176
+#define GDEW027W3_HEIGHT 264
+#define GDEW027W3_BUFFER_SIZE (uint32_t(GDEW027W3_WIDTH) * uint32_t(GDEW027W3_HEIGHT) / 8)
+
+class Gdew027w3 : public Epd
+{
+  public:
+    Gdew027w3(EpdSpi& IO);
+    
+    void drawPixel(int16_t x, int16_t y, uint16_t color);  // Override GFX own drawPixel method
+    
+    // EPD tests 
+    void init(bool debug);
+    void initFullUpdate();
+    void initPartialUpdate();
+
+    void fillScreen(uint16_t color);
+    void update();
+
+    // Both partial updates DO NOT work as expected, turning all screen black or making strange effects
+    // Partial update of rectangle from buffer to screen, does not power off
+    void updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h, bool using_rotation = true);
+    // Partial update of rectangle at (xs,ys) from buffer to screen at (xd,yd), does not power off
+    void updateToWindow(uint16_t xs, uint16_t ys, uint16_t xd, uint16_t yd, uint16_t w, uint16_t h, bool using_rotation = true);
+  
+    // This are already inherited from Epd: write(uint8_t); print(const std::string& text);println(same);
+
+  private:
+    EpdSpi& IO;
+    uint8_t _buffer[GDEW027W3_BUFFER_SIZE];
+    bool color = false;
+    bool _initial = true;
+    bool _debug_buffer = false;
+    
+    uint16_t _setPartialRamArea(uint16_t x, uint16_t y, uint16_t xe, uint16_t ye);
+    void _wakeUp();
+    void _sleep();
+    void _waitBusy(const char* message);
+    void _rotate(uint16_t& x, uint16_t& y, uint16_t& w, uint16_t& h);
+
+    // Command & data structs
+    static const epd_init_44 lut_20_vcomDC;
+    static const epd_init_42 lut_21_ww;
+    static const epd_init_42 lut_22_bw;
+    static const epd_init_42 lut_23_wb;
+    static const epd_init_42 lut_24_bb;
+
+    static const epd_init_44 lut_20_vcomDC_partial;
+    static const epd_init_42 lut_21_ww_partial;
+    static const epd_init_42 lut_22_bw_partial;
+    static const epd_init_42 lut_23_wb_partial;
+    static const epd_init_42 lut_24_bb_partial;
+
+    static const epd_power_4 epd_wakeup_power;
+    static const epd_init_3 epd_soft_start;
+    static const epd_init_1 epd_panel_setting;
+    static const epd_init_1 epd_extra_setting;
+    static const epd_init_1 epd_pll;
+    static const epd_init_4 epd_resolution;
+    static const epd_init_1 epd_vcom1;
+    static const epd_init_1 epd_vcom2;
+};
