@@ -7,33 +7,20 @@
 CalEPD needs also [Adafruit-GFX-Library-ESP-IDF](https://github.com/martinberlin/Adafruit-GFX-Library-ESP-IDF) as a component since it's uses the GFX magic to provide fonts and geometrical functions to your pixel Buffer.
 To check how an existing project uses it check [CALE-IDF dependencies](https://github.com/martinberlin/cale-idf/network/dependencies) and the [components folder](https://github.com/martinberlin/cale-idf/tree/master/components).
 
-## A bit of history
+![CalEPD Classmap](/assets/CalEPD_flow.svg)
 
-The plan is to build from scratch an EPaper Display library with font support. Prepared to be used as an ESP-IDF component only for ESP32 / ESP32S2 SoCs as a target.
-This repository will act for now as a placeholder, to plan the architecture, discuss ideas and document the progress.
+## Menuconfig
 
-Please note that this component development is being done first in [cale-idf repository](https://github.com/martinberlin/cale-idf) and this CalEPD will be a component in cale-idf. Like this is possible to test and develop fast without updating this submodule all the time. 
+In "Display configuration" you can customize the GPIOs for your Firmware
 
-In CALE-IDF you will find also a daily updated [Wiki with last news and a comprehensive list of Epaper displays supported](https://github.com/martinberlin/cale-idf/wiki).
-Just follow the **cale-idf** or this one to be notified about the development status.
-
+![Display configuration](/assets/menuconfig-display.png)
 
 ## The masterplan
 
-**CalEPD component** will be focused in EPD displays >= 400x300 px 
-(It won't support the smaller types for now) -> Update: Since I had a small 2.7" from TTGO in my office I also added it but it's the exception to the rule.
+**CalEPD component** will be focused in EPD displays >= 400x300 px. It supports 3 smaller Epds, since I had some TTGOs epapers at home, check the 2.13" and 2.7" Epd classes.
 
 The goal is to learn in this process what each model needs to receive in order to update. To document it and test it openly sharing the results and learning from our mistakes.
 Please check our [first issue](https://github.com/martinberlin/CalEPD/issues/1) to add your testing displays and let us know if you have some time to test or participate in the creation of this component.
-
-![CalEPD Classmap](/assets/CalEPD_flow.svg)
-*Note that the classmap is outdated current one looks simply like:*
-
-    Epd Abstract <- extends Adafruit GFX
-      ↑    
-      Gets EspSPI (IO) class injected
-      ↑
-      YourModel.h class implements Epd adding your display CMDs for IO
 
 ## Author
 
