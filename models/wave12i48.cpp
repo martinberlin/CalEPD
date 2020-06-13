@@ -135,7 +135,6 @@ void Wave12I48::_wakeUp(){
 void Wave12I48::update()
 {
   _wakeUp();
-  gpio_set_level((gpio_num_t)CONFIG_LEDBUILTIN_GPIO, 1);
   printf("Sending a buffer[%d] via SPI\n",sizeof(_buffer));
   uint32_t i = 0;
   IO.cmdM1S1M2S2(0x13);
@@ -179,7 +178,6 @@ void Wave12I48::update()
 
   _powerOn();
   printf("\nAvailable heap after Epd update:%d\n",xPortGetFreeHeapSize());
-  gpio_set_level((gpio_num_t)CONFIG_LEDBUILTIN_GPIO, 0);
 }
 
 uint16_t Wave12I48::_setPartialRamArea(uint16_t, uint16_t, uint16_t, uint16_t){
