@@ -39,7 +39,7 @@ void Wave12I48::init(bool debug)
 {
     debug_enabled = debug;
     if (debug_enabled) printf("Wave12I48::init(debug:%d)\n", debug);
-    //Initialize SPI at 4MHz frequency. true for debug
+    //Initialize SPI at 4MHz frequency. true for debug (Increasing up to 6 still works but no noticiable speed change)
     IO.init(4, false);
 
     fillScreen(EPD_WHITE);
@@ -51,11 +51,9 @@ void Wave12I48::fillScreen(uint16_t color)
 {
   if (debug_enabled) printf("fillScreen(%x) Buffer size:%d\n",color,sizeof(_buffer));
   uint8_t data = (color == EPD_WHITE) ? 0xFF : 0x00;
-  uint32_t lastx=0;
   for (uint32_t x = 0; x < sizeof(_buffer); x++)
   {
     _buffer[x] = data;
-    lastx = x;
   }
 }
 
@@ -134,7 +132,9 @@ void Wave12I48::_wakeUp(){
 
 void Wave12I48::update()
 {
+  uint64_t startTime = esp_timer_get_time();
   _wakeUp();
+  
   printf("Sending a buffer[%d] via SPI\n",sizeof(_buffer));
   uint32_t i = 0;
   IO.cmdM1S1M2S2(0x13);
@@ -147,37 +147,46 @@ void Wave12I48::update()
   | M1 | S1 |
   -----------
   */
+  uint8_t x1buf[81];
+  uint8_t x2buf[82];
 
+  // Optimized to send in 81/82 byte chuncks (v2 after our conversation with Samuel)
   for(uint16_t y =  1; y <= WAVE12I48_HEIGHT; y++) {
         for(uint16_t x = 1; x <= WAVE12I48_WIDTH/8; x++) {
           uint8_t data = i < sizeof(_buffer) ? _buffer[i] : 0x00;
 
         if (y <= 492) {  // S2 & M2 area
           if (x <= 81) { // 648/8 -> S2
-          IO.dataS2(data);
+            x1buf[x-1] = data;
           } else {       // M2
-          IO.dataM2(data);
+            x2buf[x-82] = data;
+          }
+
+          if (x==WAVE12I48_WIDTH/8) {  // Send the complete X line for S2 & M2
+                IO.dataS2(x1buf,sizeof(x1buf));
+                IO.dataM2(x2buf,sizeof(x2buf));
           }
 
         } else {         // M1 & S1
           if (x <= 81) { // 648/8 -> M1
-            IO.dataM1(data);
+            x1buf[x-1] = data;
           } else {       // S1
-            IO.dataS1(data);
+            x2buf[x-82] = data;
+          }
+
+          if (x==WAVE12I48_WIDTH/8) { // Send the complete X line for M1 & S1
+              IO.dataM1(x1buf,sizeof(x1buf));
+              IO.dataS1(x2buf,sizeof(x2buf));
           }
         }
-
           ++i;
-          // Needed?
-          /* if (i%8==0) {
-            rtc_wdt_feed();
-            vTaskDelay(pdMS_TO_TICKS(6));
-          } */
         }
   }
-
+  uint64_t endTime = esp_timer_get_time();
   _powerOn();
-  printf("\nAvailable heap after Epd update:%d\n",xPortGetFreeHeapSize());
+  uint64_t powerOnTime = esp_timer_get_time();
+  printf("\nAvailable heap after Epd update: %d bytes\nSTATS (ms)\n%llu _wakeUp settings+send Buffer\n%llu _powerOn\n%llu total time in millis\n",
+  xPortGetFreeHeapSize(), (endTime-startTime)/1000, (powerOnTime-endTime)/1000, (powerOnTime-startTime)/1000);
 }
 
 uint16_t Wave12I48::_setPartialRamArea(uint16_t, uint16_t, uint16_t, uint16_t){
