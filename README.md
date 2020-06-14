@@ -20,13 +20,17 @@ In "Display configuration" you can customize the GPIOs for your Firmware
 **CalEPD component** will be focused in EPD displays >= 400x300 px. It supports 3 smaller Epds, since I had some TTGOs epapers at home, check the 2.13" and 2.7" Epd classes.
 
 The goal is to learn in this process what each model needs to receive in order to update. To document it and test it openly sharing the results and learning from our mistakes.
-Please check our [first issue](https://github.com/martinberlin/CalEPD/issues/1) to add your testing displays and let us know if you have some time to test or participate in the creation of this component.
+Check our [first issue](https://github.com/martinberlin/CalEPD/issues/1) to add your testing displays and let us know if you have some time to test or participate in the creation of this component.
+Please that there is no intention to port this library to Arduino-Espressif32 since I want to keep the SPI communication as low level as possible and in my opinion, that is possible only using ESP-IDF since there are much more settings to play with. 
+
+## Achievements
+
+In some models of epaper this component was about 20% faster than GxEPD. It's also not complicated to add a new epaper model. It's design to have the smallest footprint as possible and standard C++. 
 
 ## Author
 
-Martin [Fasani](https://fasani.de) - C++ intermediate level, still learning OOP and reading every week. Big fan of [Espressif System on a Chip devices](https://www.espressif.com/en/support/documents/technical-documents)
-Not a C++ Jedi master, so excuse me if there are obvious errors for you, and please send a pull request if you know how to make it better. 
-Please do not fork this repository just to make a copy of it. If you really need it then do it but change the name, so it represents what your changes will affect, or do it with the intention to make this library better. I dislike seeing hundreds of forks of existing libraries when only 1% of them brough something better to the project. 
+Martin [Fasani](https://fasani.de) - PHP Engineer, C++
+My C++ OOP skills are still being perfectioned, so if you see things that could be done better, your pull request is more than welcome.
 
 ## History
 
@@ -36,6 +40,3 @@ So I decided to abort it, make up my mind, and start with a clear mission. Codin
 Using the factory examples provided by Good Display and Waveshare as a base and coding in top of this a very small footprint component just to support bigger displays. 
 The mission is to have a component that compiles with latest versions of CMake and does not need to use in any way Arduino components for SPI. It needs to work independantly of espressif-32 arduino.
 [SPI-communication](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/spi_master.html) does not need anything else than base classes and the idea is to keep in CalEPD the smallest footprint as possible, so you don't have to compile 22 epaper classes, to use just one in your embedded project.
-
-
-I expect that this is not my personal project but a component that have external contributions where other people with more experience than me can contribute and even make their own versions.
