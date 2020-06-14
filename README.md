@@ -25,11 +25,27 @@ Please that there is no intention to port this library to Arduino-Espressif32 si
 
 ## Achievements
 
-In some models of epaper this component was about 20% faster than GxEPD. It's also not complicated to add a new epaper model. It's design to have the smallest footprint as possible and standard C++. 
+In some models of epaper this component was about 20% faster than GxEPD. CalEPD is designed to have the smallest footprint as possible and standard C++ with the minimum overhead as possible.
+Please check our [Wiki page with the supported eink display](https://github.com/martinberlin/cale-idf/wiki), discover some benchmarks between different versions, and get specific information about your epaper display.
+
+## How to test it right away
+
+This component development is taking place in the [CALE-IDF repository](https://github.com/martinberlin/cale-idf). So simply clone it or download it. And then use the idf toolchain: 
+
+    idf.py set-target esp32 OR esp32s2
+    idf.py menuconfig
+    idf.py flash console
+
+Make sure to set the right GPIOs that connect your epaper module with your esp32 board. 
+
+## Want a new epaper module?
+
+I'm slowly adding new epapers every time a new one comes to the office. But I cannot possibly have all the existing models in the world, so if you follow the way it's done, and you have a reference library that works it's not hard to make a new class. 
+Now if you don't have the time and you want to have it added to this component I can do it for you. But in exchange I need to receive the epaper display per post, otherwise it's impossible to test and get it working the right way. Just add a git issue here with all the details you have about the model.
 
 ## Author
 
-Martin [Fasani](https://fasani.de) - PHP Engineer, C++
+Martin [Fasani](https://fasani.de) - PHP Engineer, C++ and electronic maker - **Contact:** martin at luckycloud.de
 My C++ OOP skills are still being perfectioned, so if you see things that could be done better, your pull request is more than welcome.
 
 ## History
