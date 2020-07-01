@@ -1,6 +1,6 @@
 ![CalEPD Logo](/assets/CalEPD-logo.svg)
 
-**CalEPD is an ESP-IDF component to drive epaper displays with ESP32 / ESP32S2**
+**CalEPD is an ESP-IDF C++ component to drive epaper displays with ESP32 / ESP32S2**
 
 ## Requirements
 
@@ -22,6 +22,10 @@ In "Display configuration" you can customize the GPIOs for your Firmware
 The goal is to learn in this process what each model needs to receive in order to update. To document it and test it openly sharing the results and learning from our mistakes.
 Check our [first issue](https://github.com/martinberlin/CalEPD/issues/1) to add your testing displays and let us know if you have some time to test or participate in the creation of this component.
 Please that there is no intention to port this library to Arduino-Espressif32 since I want to keep the SPI communication as low level as possible and in my opinion, that is possible only using ESP-IDF since there are much more settings to play with. 
+
+## Implementing this library as a C++ component
+
+Please note that due to the object oriented nature of this library C++ is used. That forces the developers implementing this library to use C++ as well as the main program. Please refer to [cale-idf repository](https://github.com/martinberlin/cale-idf) to see a demo of how this library is implemented on a C++ Firmware and check the demos provided.
 
 ## Achievements
 
