@@ -6,9 +6,17 @@ set(srcs
     "models/gdew0583t7.cpp"
     "models/gdew042t2.cpp"
     "models/gdew027w3.cpp"
+    "models/gdew027w3T.cpp"
     "models/gdew0213i5f.cpp"
     "models/gdep015OC1.cpp"
     "models/heltec0151.cpp"
+    
+    # 3 colors Goodisplay
+    "models/color/gdew0583z21.cpp"
+    "models/color/gdew075c64.cpp"
+    "models/color/gdeh042Z96.cpp"
+    "models/color/gdeh042Z21.cpp"
+
     # Plasticlogic.com Flex epaper models:
     "models/plasticlogic/epdspi2cs.cpp"
     "models/plasticlogic/plasticlogic.cpp"
@@ -18,15 +26,17 @@ set(srcs
     "models/plasticlogic/plasticlogic031.cpp"
 
     # Pending for more testing:
-    #   "models/gdeh0213b73.cpp"
+    "models/gdeh0213b73.cpp"
     # Common base classes
     "epd.cpp"
     "epdspi.cpp"
     "epd4spi.cpp"
     )
 
+# If the project does not use a touch display component FT6X36-IDF can be removed or #commented
 idf_component_register(SRCS ${srcs}
                     REQUIRES "Adafruit-GFX"
+                    REQUIRES "FT6X36-IDF"
                     INCLUDE_DIRS "include"
 )
 

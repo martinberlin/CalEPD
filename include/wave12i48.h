@@ -32,12 +32,13 @@ class Wave12I48 : public Epd
   public:
    
     Wave12I48(Epd4Spi& IO);
+    bool colors_supported = 1;
     
     void drawPixel(int16_t x, int16_t y, uint16_t color);  // Override GFX own drawPixel method
     
     uint16_t _setPartialRamArea(uint16_t x, uint16_t y, uint16_t xe, uint16_t ye);
     // EPD tests 
-    void init(bool debug);
+    void init(bool debug = false);
     void clear();
     void initFullUpdate();
     void initPartialUpdate();

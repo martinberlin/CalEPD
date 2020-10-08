@@ -29,11 +29,12 @@ class Gdew042t2 : public Epd
   public:
    
     Gdew042t2(EpdSpi& IO);
+    uint8_t colors_supported = 1;
     
     void drawPixel(int16_t x, int16_t y, uint16_t color);  // Override GFX own drawPixel method
     
     // EPD tests 
-    void init(bool debug);
+    void init(bool debug = false);
     void initFullUpdate();
     void initPartialUpdate();
     void updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h, bool using_rotation);

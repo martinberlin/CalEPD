@@ -14,6 +14,10 @@
 
 void EpdSpi::init(uint8_t frequency=4,bool debug=false){
     debug_enabled = debug;
+    if (debug) {
+        printf("MOSI: %d CLK: %d\nSPI_CS: %d DC: %d RST: %d BUSY: %d\n\n", CONFIG_EINK_SPI_MOSI, CONFIG_EINK_SPI_CLK,
+        CONFIG_EINK_SPI_CS,CONFIG_EINK_DC,CONFIG_EINK_RST,CONFIG_EINK_BUSY);
+    }
     //Initialize GPIOs direction & initial states
     gpio_set_direction((gpio_num_t)CONFIG_EINK_SPI_CS, GPIO_MODE_OUTPUT);
     gpio_set_direction((gpio_num_t)CONFIG_EINK_DC, GPIO_MODE_OUTPUT);
@@ -61,11 +65,13 @@ void EpdSpi::init(uint8_t frequency=4,bool debug=false){
     //Attach the EPD to the SPI bus
     ret=spi_bus_add_device(EPD_HOST, &devcfg, &spi);
     ESP_ERROR_CHECK(ret);
-    // debug_enabled
-    if (true) {
+    
+    if (debug_enabled) {
       printf("EpdSpi::init() Debug enabled. SPI master at frequency:%d  MOSI:%d CLK:%d CS:%d DC:%d RST:%d BUSY:%d\n",
       frequency*multiplier*1000, CONFIG_EINK_SPI_MOSI, CONFIG_EINK_SPI_CLK, CONFIG_EINK_SPI_CS,
       CONFIG_EINK_DC,CONFIG_EINK_RST,CONFIG_EINK_BUSY);
+        } else {
+           printf("EpdSPI started at frequency: %d000\n", frequency*multiplier);
         }
     }
 
@@ -99,9 +105,9 @@ void EpdSpi::cmd(const uint8_t cmd)
 
 void EpdSpi::data(uint8_t data)
 {
-    /* if (debug_enabled) {
+    if (debug_enabled) {
       printf("D %x\n",data);
-    } */
+    }
     esp_err_t ret;
     spi_transaction_t t;
     memset(&t, 0, sizeof(t));       //Zero out the transaction
@@ -110,6 +116,16 @@ void EpdSpi::data(uint8_t data)
     ret=spi_device_polling_transmit(spi, &t);
     
     assert(ret==ESP_OK);
+}
+
+
+void EpdSpi::dataBuffer(uint8_t data)
+{
+    spi_transaction_t t;
+    memset(&t, 0, sizeof(t));       //Zero out the transaction
+    t.length=8;                     //Command is 8 bits
+    t.tx_buffer=&data;
+    spi_device_polling_transmit(spi, &t);
 }
 
 /* Send data to the SPI. Uses spi_device_polling_transmit, which waits until the
