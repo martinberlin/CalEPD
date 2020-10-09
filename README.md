@@ -9,6 +9,9 @@ To check how an existing project uses it check [CALE-IDF dependencies](https://g
 
 ![CalEPD Classmap](/assets/CalEPD_flow.svg)
 
+This is the newest additon, the Touch class, so you can make user interfaces on the ESP32
+![CalEPD with Touch Classmap](/assets/CalEPD_touch.svg)
+
 ## Menuconfig
 
 In "Display configuration" you can customize the GPIOs for your Firmware
