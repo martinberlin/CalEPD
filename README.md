@@ -53,6 +53,13 @@ Make sure to set the right GPIOs that connect your epaper module with your esp32
 I'm slowly adding new epapers every time a new one comes to the office. But I cannot possibly have all the existing models in the world, so if you follow the way it's done, and you have a reference library that works it's not hard to make a new class. 
 Now if you don't have the time and you want to have it added to this component I can do it for you. But in exchange I need to receive the epaper display per post, otherwise it's impossible to test and get it working the right way. Just add a git issue here with all the details you have about the model.
 
+## Touch integration
+
+Starting on v1.0 we added a touch component that is integrated as a test in the [Model gdew027w3T.h](https://github.com/martinberlin/cale-idf/wiki/Model-gdew027w3T.h-(Touch)) 
+Please check the WiKi to get the wiring details and thinking behind building this component. 
+https://github.com/martinberlin/FT6X36-IDF
+
+
 ## Author
 
 Martin [Fasani](https://fasani.de) - PHP Engineer, C++ and electronic maker - **Contact:** martin at luckycloud.de
