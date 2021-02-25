@@ -16,7 +16,7 @@ To check how an existing project uses it check [CALE-IDF dependencies](https://g
 
 1. You found a bug and want to suggest a merge request. Then Fork it!
 2. You will contribute adding a new epaper model that does exist.
-3. You will use Cale-idf as a base to create something new. But in that case it would be better to fork the components. 
+3. You will use CaEPD as a base to create something new. But in that case it would be nice to let us know first!
 
 All other users that fork this without falling in this categories and without any kind of advice to us will be blocked and will not be able to interact with the further Cale releases. Forking is not bookmarking!
 
