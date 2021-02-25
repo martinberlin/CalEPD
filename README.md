@@ -10,6 +10,20 @@
 CalEPD needs also [Adafruit-GFX-Library-ESP-IDF](https://github.com/martinberlin/Adafruit-GFX-Library-ESP-IDF) as a component since it's uses the GFX magic to provide fonts and geometrical functions to your pixel Buffer.
 To check how an existing project uses it check [CALE-IDF dependencies](https://github.com/martinberlin/cale-idf/network/dependencies) and the [components folder](https://github.com/martinberlin/cale-idf/tree/master/components).
 
+## Fork policy
+
+**Please do not Fork this repository to bookmark it**. For that use the ★ Star button. Acceptable forks fall in this three categories:
+
+1. You found a bug and want to suggest a merge request. Then Fork it!
+2. You will contribute adding a new epaper model that does exist.
+3. You will use Cale-idf as a base to create something new. But in that case it would be better to fork the components. 
+
+All other users that fork this without falling in this categories and without any kind of advice to us will be blocked and will not be able to interact with the further Cale releases. Forking is not bookmarking!
+
+We don't like having copies of this without any reason. It is just a bad practice, makes things confusing, and makes absolutely no sense. 
+
+## Classmap 
+
 ![CalEPD Classmap](/assets/CalEPD_flow.svg)
 
 This is the newest additon, the Touch class, so you can make user interfaces on the ESP32
