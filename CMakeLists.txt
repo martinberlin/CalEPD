@@ -1,6 +1,7 @@
 # Add only the display srcs you are going to use if you want to keep compiled srcs to a minimum:
 set(srcs 
     "models/wave12i48.cpp"
+    "models/gdew075HD.cpp"
     "models/gdew075T7.cpp"
     "models/gdew075T8.cpp"
     "models/gdew0583t7.cpp"
@@ -9,6 +10,7 @@ set(srcs
     "models/gdew027w3T.cpp"
     "models/gdew0213i5f.cpp"
     "models/gdep015OC1.cpp"
+    "models/gdeh0154d67.cpp"
     "models/heltec0151.cpp"
     
     # 3 colors Goodisplay
@@ -19,6 +21,10 @@ set(srcs
     "models/color/gdeh042Z21.cpp"
     "models/color/wave12i48BR.cpp"
 
+    # 7 colors Waveshare
+    "models/color/wave4i7Color.cpp"
+    "models/color/wave5i7Color.cpp"
+
     # Plasticlogic.com Flex epaper models:
     "models/plasticlogic/epdspi2cs.cpp"
     "models/plasticlogic/plasticlogic.cpp"
@@ -27,18 +33,25 @@ set(srcs
     "models/plasticlogic/plasticlogic021.cpp"
     "models/plasticlogic/plasticlogic031.cpp"
 
+    # Parallel epapers supported by Epdiy driver (Component)
+    "models/parallel/ED047TC1.cpp"
+    "models/parallel/ED047TC1touch.cpp"
+
     # Pending for more testing:
     "models/gdeh0213b73.cpp"
     # Common base classes
     "epd.cpp"
+    "epd7color.cpp"
     "epdspi.cpp"
     "epd4spi.cpp"
+    "epdParallel.cpp"
     )
 
 # If the project does not use a touch display component FT6X36-IDF can be removed or #commented
 idf_component_register(SRCS ${srcs}
                     REQUIRES "Adafruit-GFX"
                     REQUIRES "FT6X36-IDF"
+                    REQUIRES "Epdiy-IDF"
                     INCLUDE_DIRS "include"
 )
 
