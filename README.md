@@ -20,7 +20,8 @@ To check how an existing project uses it check [CALE-IDF dependencies](https://g
 
 All other users that fork this without falling in this categories and without any kind of advice to us will be blocked and will not be able to interact with the further Cale releases. Forking is not bookmarking!
 
-We don't like having copies of this without any reason. It is just a bad practice, makes things confusing, and makes absolutely no sense. 
+We don't like having copies of this without any reason. It is just a bad practice, makes things confusing, and makes absolutely no sense. This repository is not going to dissapear or be deleted by any means so you can use it with confidence.
+Forking this in order to make updates that fit your particular project is alright, as long as you update the readme and state what are the intentions to do so.
 
 ## Classmap 
 
