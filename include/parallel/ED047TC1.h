@@ -12,6 +12,7 @@
 #include <Adafruit_GFX.h>
 #include <epdspi.h>
 #include "epd_driver.h"
+#include "epd_highlevel.h"
 
 #define HAS_16_LEVELS_GRAY 1
 #define ED047TC1_WIDTH 960
@@ -31,7 +32,6 @@ class Ed047TC1 : public EpdParallel
 {
   public:
     Ed047TC1();
-
     uint8_t *framebuffer;
     uint8_t colors_supported = 1;
 
@@ -39,15 +39,15 @@ class Ed047TC1 : public EpdParallel
 
     void init(bool debug = false);
     void clearScreen();
-    void clearArea(Rect_t area);
+    void clearArea(EpdRect area);
     void powerOn();
     void powerOff();
     
     void fillScreen(uint16_t color);
-    void update(enum DrawMode mode = BLACK_ON_WHITE);
+    void update(enum EpdDrawMode mode = MODE_GC16);
 
-    // Partial update of rectangle from buffer to screen, does not power off
-    void updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h, enum DrawMode mode = BLACK_ON_WHITE, bool using_rotation = true);
+    // Partial update of rectangle from buffer to screen, does not power off. Default can be also MODE_EPDIY_WHITE_TO_GL16
+    void updateWindow(uint16_t x, uint16_t y, uint16_t w, uint16_t h, enum EpdDrawMode mode = MODE_GC16);
 
   private:
     bool _tempalert = false;
