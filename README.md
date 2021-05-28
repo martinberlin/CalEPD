@@ -6,8 +6,9 @@
 
 * Espressif IDF framework **v. 4.3**
 * An SPI epaper. Check [the Wiki](https://github.com/martinberlin/cale-idf/wiki) for supported models
-* In order to use the 2 parallel supported modules it needs EPDiy library as a submodule. I prepared a fork that can be directly used as a component:
-git submodule add https://github.com/martinberlin/epdiy-rotation.git components/epd_driver
+* In order to use the parallel epaper displays it needs EPDiy library as a submodule. I prepared a fork that can be directly used as a component:
+
+    git submodule add https://github.com/martinberlin/epdiy-rotation.git components/epd_driver
 
 CalEPD needs also [Adafruit-GFX-Library-ESP-IDF](https://github.com/martinberlin/Adafruit-GFX-Library-ESP-IDF) as a component since it's uses the GFX magic to provide fonts and geometrical functions to your pixel Buffer.
 To check how an existing project uses it check [CALE-IDF dependencies](https://github.com/martinberlin/cale-idf/network/dependencies) and the [components folder](https://github.com/martinberlin/cale-idf/tree/master/components).
