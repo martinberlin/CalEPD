@@ -14,6 +14,32 @@ CalEPD needs also [Adafruit-GFX-Library-ESP-IDF](https://github.com/martinberlin
 To check how an existing project uses it check [CALE-IDF dependencies](https://github.com/martinberlin/cale-idf/network/dependencies) and the [components folder](https://github.com/martinberlin/cale-idf/tree/master/components).
 Please check the [paralell examples in Cale-idf](https://github.com/martinberlin/cale-idf/tree/master/main/demos/parallel) project to get a grasp of how they work together with the EPDiy integration. 
 
+### Touch models
+
+In latest CalEPD releases we included two classes that are touch aware. Touch models marked with a T suffix are disabled by default, uncomment in case of requirement in the CMakeLists.txt file:
+
+```
+set(srcs 
+   #"models/gdew027w3T.cpp"
+   #"models/parallel/ED047TC1touch.cpp"
+)
+```
+
+**Instantiation of touch**
+
+For more in-deep use cases check the Cale-idf examples
+
+```c
+// Add the Focal Tech class for Goodisplay 2.7 inch epaper
+#include <FT6X36.h>
+#include <gdew027w3T.h>
+// INTGPIO is touch interrupt, goes low when it detects a touch, which coordinates are read by I2C
+FT6X36 ts(CONFIG_TOUCH_INT);
+EpdSpi io;
+// Inject both IO and Touch to the display class in the constructor parameters
+Gdew027w3T display(io, ts);
+```
+
 ## Fork policy
 
 **Please do not Fork this repository to bookmark it**. For that use the ★ Star button. Acceptable forks fall in this three categories:

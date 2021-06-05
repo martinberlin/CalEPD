@@ -1,5 +1,6 @@
 # Add only the display srcs you are going to use if you want to keep compiled srcs to a minimum:
 set(srcs 
+    # Touch models marked with a T suffix are disabled by default, uncomment in case of requirement
     "models/wave12i48.cpp"
     "models/gdew075HD.cpp"
     "models/gdew075T7.cpp"
@@ -7,7 +8,7 @@ set(srcs
     "models/gdew0583t7.cpp"
     "models/gdew042t2.cpp"
     "models/gdew027w3.cpp"
-    "models/gdew027w3T.cpp"
+    #"models/gdew027w3T.cpp"
     "models/gdew0213i5f.cpp"
     "models/gdep015OC1.cpp"
     "models/gdeh0154d67.cpp"
@@ -35,7 +36,7 @@ set(srcs
 
     # Parallel epapers supported by Epdiy driver (Component)
     "models/parallel/ED047TC1.cpp"
-    "models/parallel/ED047TC1touch.cpp"
+    #"models/parallel/ED047TC1touch.cpp"
     "models/parallel/ED060SC4.cpp"
 
     # Pending for more testing:
