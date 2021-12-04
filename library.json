@@ -1,0 +1,11 @@
+{
+    "name": "calepd",
+    "version": "1.0.6",
+    "build": {
+      "includeDir": "include",
+      "srcDir": "."
+    },
+    "dependencies": {
+        "adafruit-gfx-library-esp-idf": "^1.7"
+    }
+}
