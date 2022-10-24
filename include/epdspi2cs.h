@@ -3,6 +3,11 @@
 #include "driver/gpio.h"
 #include "iointerface.h"
 
+#include <vector>
+using namespace std;
+
+#include <esp_timer.h>
+
 #ifndef epdspi2cs_h
 #define epdspi2cs_h
 // Instruction R/W bit set HIGH for data READ
@@ -19,6 +24,7 @@ class EpdSpi2Cs : IoInterface
     void data(const uint8_t *data, int len) override; 
     void reset(uint8_t millis) override;
     void init(uint8_t frequency, bool debug) override;
+    void dataVector(vector<uint8_t> _buffer);
 
     void release();
     uint8_t readTemp();

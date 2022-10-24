@@ -12,11 +12,11 @@
 #include <epd.h>
 #include <Adafruit_GFX.h>
 #include <epdspi.h>
-#if defined CONFIG_IDF_TARGET_ESP32
+#if defined CONFIG_IDF_TARGET_ESP32 && ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 0, 0)
   #include "soc/rtc_wdt.h"
 #endif
 #include <gdew_4grays.h>
-
+#include <esp_timer.h>
 // Controller: IL0398 : http://www.good-display.com/download_detail/downloadsId=537.html
 #define GDEW042T2_WIDTH 400
 #define GDEW042T2_HEIGHT 300
@@ -47,10 +47,19 @@ class Gdew042t2Grays : public Epd
 
   private:
     EpdSpi& IO;
-    bool _mono_mode = false;
+    bool _mono_mode = true;
+    // TODO ADD IF PSRAM
+    #ifdef CONFIG_SPIRAM
+    // Allocate buffers in PSRAM
+    uint8_t* _buffer1 = (uint8_t*)heap_caps_malloc(GDEW042T2_MONO_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
+    uint8_t* _buffer2 = (uint8_t*)heap_caps_malloc(GDEW042T2_MONO_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
+    uint8_t* _mono_buffer = (uint8_t*)heap_caps_malloc(GDEW042T2_MONO_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
+    #else 
     uint8_t _buffer1[GDEW042T2_MONO_BUFFER_SIZE];
     uint8_t _buffer2[GDEW042T2_MONO_BUFFER_SIZE];
     uint8_t _mono_buffer[GDEW042T2_MONO_BUFFER_SIZE];
+    #endif
+    
     bool _initial = true;
     uint16_t _partials = 0;
     

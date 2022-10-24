@@ -13,6 +13,7 @@
 #include <Adafruit_GFX.h>
 #include <epdspi.h>
 #include <color/wave7colors.h>
+#include <esp_timer.h>
 
 // Controller: Unknown
 #define WAVE5I7COLOR_WIDTH 600
@@ -36,7 +37,8 @@ class Wave5i7Color : public Epd7Color
   private:
     EpdSpi& IO;
 
-    uint8_t _buffer[WAVE5I7COLOR_BUFFER_SIZE];
+    // Now stored in PSRAM
+    uint8_t* _buffer = (uint8_t*)heap_caps_malloc(WAVE5I7COLOR_BUFFER_SIZE, MALLOC_CAP_SPIRAM);
 
     bool _initial = true;
     void _wakeUp();
