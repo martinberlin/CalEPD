@@ -3,7 +3,6 @@
 
 #include <calepd_version.h>
 #include <stdio.h>
-#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include "freertos/FreeRTOS.h"
@@ -17,6 +16,12 @@
 #include <epdspi.h>
 
 // Shared struct(s) for different models
+typedef struct {
+    uint8_t cmd;
+    uint8_t data[159];
+    uint8_t databytes;
+} epd_lut_159;
+
 typedef struct {
     uint8_t cmd;
     uint8_t data[100];
@@ -116,7 +121,6 @@ class Epd : public virtual Adafruit_GFX
     void print(const std::string& text);
     void print(const char c);
     void println(const std::string& text);
-    void printerf(const char *format, ...);
     void newline();
   // Methods that should be accesible by inheriting this abstract class
   protected: 
@@ -139,7 +143,7 @@ class Epd : public virtual Adafruit_GFX
     virtual void _wakeUp() = 0;
     virtual void _sleep() = 0;
     virtual void _waitBusy(const char* message) = 0;
-
+    
     uint8_t _unicodePerChar(uint8_t c);
     uint8_t _unicodeEasy(uint8_t c);
     // Command & data structs should be implemented by every MODELX display

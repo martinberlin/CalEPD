@@ -1,4 +1,4 @@
-// Epaper: 5.65inch ACeP 7-Color  https://www.waveshare.com/product/displays/e-paper/5.65inch-e-paper-module-f.htm
+// Epaper: ACeP 7-Color GOODISPLAY https://www.good-display.com/product/442.html
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,17 +16,16 @@
 #include <esp_timer.h>
 
 // Controller: Unknown
-#define WAVE5I7COLOR_WIDTH 600
-#define WAVE5I7COLOR_HEIGHT 448
-#define WAVE5I7COLOR_BUFFER_SIZE (uint32_t(WAVE5I7COLOR_WIDTH) * uint32_t(WAVE5I7COLOR_HEIGHT) / 2)
+#define GDEY073D46_WIDTH 800
+#define GDEY073D46_HEIGHT 480
+#define GDEY073D46_BUFFER_SIZE (uint32_t(GDEY073D46_WIDTH) * uint32_t(GDEY073D46_HEIGHT) / 2)
 
-class Wave5i7Color : public Epd7Color
+class gdey073d46 : public Epd7Color
 {
   public:
-   
-    Wave5i7Color(EpdSpi& IO);
+    gdey073d46(EpdSpi& IO);
     const uint8_t colors_supported = 7;
-    bool spi_optimized = true;
+    bool spi_optimized = false;
     const bool has_partial_update = false;
     
     void init(bool debug = false);
@@ -37,7 +36,7 @@ class Wave5i7Color : public Epd7Color
   private:
     EpdSpi& IO;
 
-    uint8_t _buffer[WAVE5I7COLOR_BUFFER_SIZE];
+    uint8_t _buffer[GDEY073D46_BUFFER_SIZE];
 
     bool _initial = true;
     void _wakeUp();

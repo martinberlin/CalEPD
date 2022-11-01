@@ -5,7 +5,9 @@
 #include <stdlib.h>
 #include "esp_log.h"
 #include "freertos/task.h"
-
+#include <stdint.h>
+#include <stdbool.h>
+#include <inttypes.h>
 // Constructor
 Wave5i7Color::Wave5i7Color(EpdSpi& dio): 
   Adafruit_GFX(WAVE5I7COLOR_WIDTH, WAVE5I7COLOR_HEIGHT),
@@ -32,12 +34,12 @@ void Wave5i7Color::fillScreen(uint16_t color)
 {
   uint8_t pv = _color7(color);
   uint8_t pv2 = pv | pv << 4;
-  for (uint32_t x = 0; x < WAVE5I7COLOR_BUFFER_SIZE; x++)
+  for (uint32_t x = 0; x < sizeof(_buffer); x++)
   {
     _buffer[x] = pv2;
   }
 
-  if (debug_enabled) printf("fillScreen(%x)  buffer size:%d\n", color, WAVE5I7COLOR_BUFFER_SIZE);
+  if (debug_enabled) printf("fillScreen(%x) black/red _buffer len:%d\n", color, sizeof(_buffer));
 }
 
 void Wave5i7Color::_wakeUp(){
@@ -114,7 +116,7 @@ void Wave5i7Color::update()
     {
       for (uint16_t x = 1; x <= xLineBytes; x++)
       {
-        uint8_t data = i < WAVE5I7COLOR_BUFFER_SIZE ? _buffer[i] : 0x33;
+        uint8_t data = i < sizeof(_buffer) ? _buffer[i] : 0x33;
         x1buf[x - 1] = data;
         if (x == xLineBytes)
         { // Flush the X line buffer to SPI
@@ -125,11 +127,11 @@ void Wave5i7Color::update()
     }
     if (debug_enabled) {
       printf("\nSPI optimization is on. Sending full xLineBytes: %d per SPI (4 bits per pixel)\n\nBuffer size: %d  expected size: %d\n", 
-     xLineBytes, i, WAVE5I7COLOR_BUFFER_SIZE);
+      (int)xLineBytes, (int)i, (int)WAVE5I7COLOR_BUFFER_SIZE);
     }
 
   } else {
-    for (uint32_t i = 0; i < WAVE5I7COLOR_BUFFER_SIZE; i++) {
+    for (uint32_t i = 0; i < sizeof(_buffer); i++) {
       IO.data(_buffer[i]);
     }
   }

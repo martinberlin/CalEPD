@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include "esp_log.h"
 #include "freertos/task.h"
-
+#include <stdint.h>
+#include <stdbool.h>
+#include <inttypes.h>
 /*
  The EPD needs a bunch of command/data values to be initialized. They are send using the IO class
 */
@@ -275,9 +277,9 @@ void Gdew042t2Grays::init(bool debug)
 
     //Reset the display
     IO.reset(20);
-    
+
     fillScreen(EPD_WHITE);
-    _mono_mode = false;
+    _mono_mode = 1;
     fillScreen(EPD_WHITE);
 }
 
