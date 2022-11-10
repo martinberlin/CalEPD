@@ -91,10 +91,6 @@ void Epd::println(const std::string& text){
    write(10); // newline
 }
 
-void Epd::newline() {
-  write(10);
-}
-
 /**
  * @brief Similar to printf
  * Note that buffer needs to end with null character
@@ -113,4 +109,8 @@ void Epd::printerf(const char *format, ...) {
     } else {
       ESP_LOGE("Epd::printerf", "max_buffer out of range. Increase max_buffer!");
     }
+}
+
+void Epd::newline() {
+  write(10);
 }

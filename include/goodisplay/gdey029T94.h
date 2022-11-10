@@ -1,5 +1,5 @@
-// GOODISPLAY product https://www.good-display.com/product/391.html
-// Controller:        SSD1680Z
+// GOODISPLAY product https://www.good-display.com/product/389.html
+// Controller:        SSD1680
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,22 +18,22 @@
 
 // All comments below are from J-M Zingg (Ref. EPD)
 // The physical number of pixels (for controller parameter)
-#define GDEH0213B73_X_PIXELS 128
-#define GDEH0213B73_Y_PIXELS 250
+#define GDEY029T94_X_PIXELS 128
+#define GDEY029T94_Y_PIXELS 296
 
 // The logical width and height of the display
-#define GDEH0213B73_WIDTH GDEH0213B73_X_PIXELS
-#define GDEH0213B73_HEIGHT GDEH0213B73_Y_PIXELS
+#define GDEY029T94_WIDTH 128
+#define GDEY029T94_HEIGHT 296
 
 // Note: the visible number of display pixels is 122*250, see GDEH0213B72 V1.1 Specification.pdf
-#define GDEH0213B73_VISIBLE_WIDTH 122
+#define GDEY029T94_VISIBLE_WIDTH 128
 
-#define GDEH0213B73_BUFFER_SIZE (uint32_t(GDEH0213B73_WIDTH) * uint32_t(GDEH0213B73_HEIGHT) / 8)
+#define GDEY029T94_BUFFER_SIZE (uint32_t(GDEY029T94_WIDTH) * uint32_t(GDEY029T94_HEIGHT) / 8)
 
-class Gdey0213b74 : public Epd
+class Gdey029T94 : public Epd
 {
   public:
-    Gdey0213b74(EpdSpi& IO);
+    Gdey029T94(EpdSpi& IO);
     // Counts only Ink color so BWR will have 2
     const uint8_t colors_supported = 1;
     const uint8_t partial_supported = 1;
@@ -54,9 +54,9 @@ class Gdey0213b74 : public Epd
   private:
     EpdSpi& IO;
     bool _mono_mode = false;
-    uint8_t _mono_buffer[GDEH0213B73_BUFFER_SIZE];
-    uint8_t _buffer1[GDEH0213B73_BUFFER_SIZE];
-    uint8_t _buffer2[GDEH0213B73_BUFFER_SIZE];
+    uint8_t _mono_buffer[GDEY029T94_BUFFER_SIZE];
+    uint8_t _buffer1[GDEY029T94_BUFFER_SIZE];
+    uint8_t _buffer2[GDEY029T94_BUFFER_SIZE];
 
     bool debug_enabled = false;
     

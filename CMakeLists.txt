@@ -3,7 +3,8 @@ set(srcs
     # New GOODISPLAY models will be in goodisplay directory
     "models/goodisplay/gdey0213b74.cpp"
     "models/goodisplay/gdey0154d67.cpp"
-    
+    "models/goodisplay/gdey029T94.cpp"
+    "models/goodisplay/gdey027T91.cpp"
     # Other mixed brands mostly GOODISPLAY based or using their epapers
     "models/wave12i48.cpp"
     "models/gdew075HD.cpp"
@@ -29,6 +30,7 @@ set(srcs
     "models/color/gdew075c64.cpp"
     "models/color/gdeh042Z96.cpp"
     "models/color/gdeh042Z21.cpp"
+    "models/color/gdeq042Z21.cpp"
     "models/color/wave12i48BR.cpp"
 
     # 7 colors ACEP
