@@ -2,6 +2,9 @@
 
 **CalEPD is an ESP-IDF C++ component to drive epaper displays with ESP32 / ESP32S2**
 
+IMPORTANT NEWS: IDF v. 5 support is already on the way. Please switch to **develop** branch to test it, even if you are using 4.4 version, so you can help us to debug it and be safe when it merges.
+[Pull request to merge idf_v5 into master here](https://github.com/martinberlin/CalEPD/pull/8)
+
 ## Requirements
 
 * Espressif IDF framework **v. 4.3**
