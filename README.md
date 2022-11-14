@@ -17,6 +17,10 @@ CalEPD needs also [Adafruit-GFX-Library-ESP-IDF](https://github.com/martinberlin
 To check how an existing project uses it check [CALE-IDF dependencies](https://github.com/martinberlin/cale-idf/network/dependencies) and the [components folder](https://github.com/martinberlin/cale-idf/tree/master/components).
 Please check the [paralell examples in Cale-idf](https://github.com/martinberlin/cale-idf/tree/master/main/demos/parallel) project to get a grasp of how they work together with the EPDiy integration. 
 
+### VSCODE and Platformio ★
+
+In the repository [cale-platformio](https://github.com/martinberlin/cale-platformio) you can have a quick start skeleton to use this component CalEPD and Adafruit-GFX together, along with optional FocalTech touch I2C. Please be aware that there are some corrections to do until we figure out what is the best way to do it. Read those in the WiKi and please give a **★ to the cale-platformio** repository if you find it useful.
+
 ### Touch models
 
 In latest CalEPD releases we included two classes that are touch aware. Touch models marked with a T suffix are disabled by default, uncomment in case of requirement in the CMakeLists.txt file:
