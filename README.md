@@ -54,10 +54,8 @@ Gdew027w3T display(io, ts);
 2. You will contribute adding a new epaper model that does exist.
 3. You will use CaEPD as a base to create something new. But in that case it would be nice to let us know first!
 
-All other users that fork this without falling in this categories and without any kind of advice to us will be blocked and will not be able to interact with the further Cale releases. Forking is not bookmarking!
-
-We don't like having copies of this without any reason. It is just a bad practice, makes things confusing, and makes absolutely no sense. This repository is not going to dissapear or be deleted by any means so you can use it with confidence.
 Forking this in order to make updates that fit your particular project is alright, as long as you update the readme and state what are the intentions to do so.
+This advice is because we don't like having copies of the whole repository without any reason. But it does not interfere in any way with the [Apache License](LICENSE#L89) that clearly states that you might reproduce and distribute a copy of this component provided you agree with the terms mentioned there.
 
 ## Classmap 
 
