@@ -6,7 +6,7 @@ IMPORTANT NEWS: IDF v. 5 support is already merged on master
 
 ## Requirements
 
-* Espressif IDF framework **v. 4.3**
+* Espressif IDF framework **v. 4.3** to latest version
 * An SPI epaper. Check [the Wiki](https://github.com/martinberlin/cale-idf/wiki) for supported models
 * In order to use the parallel epaper displays it needs EPDiy library as a submodule. I prepared a fork that can be directly used as a component:
 
@@ -122,3 +122,8 @@ So I decided to abort it, make up my mind, and start with a clear mission. Codin
 Using the factory examples provided by Good Display and Waveshare as a base and coding in top of this a very small footprint component just to support bigger displays. 
 The mission is to have a component that compiles with latest versions of CMake and does not need to use in any way Arduino components for SPI. It needs to work independantly of espressif-32 arduino.
 [SPI-communication](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/spi_master.html) does not need anything else than base classes and the idea is to keep in CalEPD the smallest footprint as possible, so you don't have to compile 22 epaper classes, to use just one in your embedded project.
+
+## Interesting projects using this library
+
+- [Bistable-smart-switch](https://github.com/martinberlin/bistable-smart-switch) an ESP32-C3 (or S3) smart switch for your wall
+- [Invisible computers epaper](https://www.invisible-computers.com) your Google Calendar in an epaper display, drawn using CalEPD!
