@@ -5,10 +5,11 @@ set(srcs
     "models/goodisplay/gdey0154d67.cpp"
     "models/goodisplay/gdey029T94.cpp"
     "models/goodisplay/gdey027T91.cpp"
+    "models/goodisplay/gdeq037T31.cpp"
     # With touch integrated
     "models/goodisplay/touch/gdey027T91T.cpp"
     # Other mixed brands mostly GOODISPLAY based or using their epapers
-    "models/wave12i48.cpp"
+    #"models/wave12i48.cpp"
     "models/gdew075HD.cpp"
     "models/gdew075T7.cpp"
     "models/gdew075T7Grays.cpp"
@@ -16,6 +17,7 @@ set(srcs
     "models/gdew0583t7.cpp"
     "models/gdew042t2.cpp"
     "models/gdew042t2Grays.cpp"
+    "models/gdem029E97.cpp"
     "models/gdew027w3.cpp"
     "models/wave12i48.cpp"
     # Touch model, please also enable FT6X36-IDF in the REQUIRE section
@@ -36,7 +38,7 @@ set(srcs
     "models/color/gdeh042Z96.cpp"
     "models/color/gdeh042Z21.cpp"
     "models/color/gdeq042Z21.cpp"
-    "models/color/wave12i48BR.cpp"
+    #"models/color/wave12i48BR.cpp"
 
     # 7 colors ACEP
     "models/color/gdey073d46.cpp"
@@ -66,8 +68,15 @@ set(srcs
     "epd.cpp"
     "epd7color.cpp"
     "epdspi.cpp"
-    "epd4spi.cpp"
+    #"epd4spi.cpp"
     )
+
+idf_build_get_property(target IDF_TARGET)
+message(STATUS "→ Building example for ${target}")
+
+if (${target} EQUAL "esp32")
+    list(APPENDS srcs "epd4spi.cpp")
+endif()
 
 # If the project does not use a touch display component FT6X36-IDF can be removed or #commented
 idf_component_register(SRCS ${srcs}      
