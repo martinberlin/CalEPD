@@ -54,15 +54,16 @@ class Gdey027T91 : public Epd
     bool _initial = true;
     bool _debug_buffer = false;
     bool _mono_mode = false;
-        void _PowerOn();
+    
+    void _PowerOn();
     // Ram data entry mode methods
     void _setRamDataEntryMode(uint8_t em);
     void _SetRamArea(uint8_t Xstart, uint8_t Xend, uint8_t Ystart, uint8_t Ystart1, uint8_t Yend, uint8_t Yend1);
     void _SetRamPointer(uint8_t addrX, uint8_t addrY, uint8_t addrY1);
     
     // Default wakeUp used for 4 gray mode
+    void _wakeUp4Gray();
     void _wakeUp();
-    void _wakeUp(uint8_t em);
     
     void _sleep();
     void _waitBusy(const char* message, uint16_t busy_time);
