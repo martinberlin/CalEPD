@@ -33,6 +33,7 @@ set(srcs
     # 3 colors Goodisplay
     "models/color/gdeh0154z90.cpp"
     "models/color/gdew0583z21.cpp"
+    "models/color/gdew0583z83.cpp"
     "models/color/gdew075z09.cpp"
     "models/color/gdew075c64.cpp"
     "models/color/gdeh042Z96.cpp"
@@ -40,6 +41,7 @@ set(srcs
     "models/color/gdeq042Z21.cpp"
     #"models/color/wave12i48BR.cpp"
 
+    "models/color/dke075z83.cpp"
     # 7 colors ACEP
     "models/color/gdey073d46.cpp"
     "models/color/wave4i7Color.cpp"
