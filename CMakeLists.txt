@@ -37,6 +37,7 @@ set(srcs
     "models/color/gdew075z09.cpp"
     "models/color/gdew075c64.cpp"
     "models/color/gdeh042Z96.cpp"
+    "models/color/gdeh042Z98.cpp"
     "models/color/gdeh042Z21.cpp"
     "models/color/gdeq042Z21.cpp"
     #"models/color/wave12i48BR.cpp"
