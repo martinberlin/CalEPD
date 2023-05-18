@@ -5,11 +5,12 @@ set(srcs
     "models/goodisplay/gdey0154d67.cpp"
     "models/goodisplay/gdey029T94.cpp"
     "models/goodisplay/gdey027T91.cpp"
+    "models/goodisplay/gdey042T81.cpp"
     "models/goodisplay/gdeq037T31.cpp"
     # With touch integrated
     "models/goodisplay/touch/gdey027T91T.cpp"
     # Other mixed brands mostly GOODISPLAY based or using their epapers
-    #"models/wave12i48.cpp"
+    "models/wave12i48.cpp"
     "models/gdew075HD.cpp"
     "models/gdew075T7.cpp"
     "models/gdew075T7Grays.cpp"
@@ -37,7 +38,6 @@ set(srcs
     "models/color/gdew075z09.cpp"
     "models/color/gdew075c64.cpp"
     "models/color/gdeh042Z96.cpp"
-    "models/color/gdeh042Z98.cpp"
     "models/color/gdeh042Z21.cpp"
     "models/color/gdeq042Z21.cpp"
     #"models/color/wave12i48BR.cpp"
@@ -71,7 +71,7 @@ set(srcs
     "epd.cpp"
     "epd7color.cpp"
     "epdspi.cpp"
-    #"epd4spi.cpp"
+    "epd4spi.cpp"
     )
 
 idf_build_get_property(target IDF_TARGET)
