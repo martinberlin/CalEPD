@@ -24,6 +24,7 @@ set(srcs
     "models/gdew075T7Grays.cpp"
     "models/gdew075T8.cpp"
     "models/gdew0583t7.cpp"
+    "models/goodisplay/gdey0583T81.cpp"
     "models/gdew042t2.cpp"
     "models/gdew042t2Grays.cpp"
     "models/gdem029E97.cpp"
@@ -38,6 +39,7 @@ set(srcs
     "models/small/gdew0102I3F.cpp"
     
     # 3 colors Goodisplay
+    "models/color/gdew027c44.cpp"
     "models/color/gdeh0154z90.cpp"
     "models/color/gdew0583z21.cpp"
     "models/color/gdew0583z83.cpp"
