@@ -2,7 +2,8 @@
 
 **CalEPD is an ESP-IDF C++ component to drive epaper displays with ESP32 / ESP32S2**
 
-IMPORTANT NEWS: IDF v. 5 support is already merged on master
+IMPORTANT NEWS: IDF v. 5 support is already merged on master.
+[Check FastJsonDL](https://github.com/martinberlin/FastJsonDL) a JSON domain language to draw GFX on displays that could be sent from a webservice or from an AI agent.
 
 ## Requirements
 
