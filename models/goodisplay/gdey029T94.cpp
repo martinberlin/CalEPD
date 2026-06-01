@@ -109,7 +109,7 @@ void Gdey029T94::update()
     _wakeUp();
 
     IO.cmd(0x24); // write RAM1 for black(0)/white (1)
-    for (int y = GDEY029T94_HEIGHT; y >= 0; y--) {
+    for (int y = GDEY029T94_HEIGHT - 1; y >= 0; y--) {
       for (uint16_t x = 0; x < xLineBytes; x++)
       {
         uint16_t idx = y * xLineBytes + x;
@@ -128,7 +128,7 @@ void Gdey029T94::update()
     
     // 4 grays mode
     IO.cmd(0x24); // write RAM1 for black(0)/white (1)
-    for (int y = GDEY029T94_HEIGHT; y >= 0; y--) {
+    for (int y = GDEY029T94_HEIGHT - 1; y >= 0; y--) {
       for (uint16_t x = 0; x < xLineBytes; x++)
       {
         uint16_t idx = y * xLineBytes + x;
@@ -143,7 +143,7 @@ void Gdey029T94::update()
     }
     i = 0;
     IO.cmd(0x26); //RAM2 buffer: SPI2
-    for (int y = GDEY029T94_HEIGHT; y >= 0; y--) {
+    for (int y = GDEY029T94_HEIGHT - 1; y >= 0; y--) {
       for (uint16_t x = 0; x < xLineBytes; x++)
       {
         uint16_t idx = y * xLineBytes + x;
